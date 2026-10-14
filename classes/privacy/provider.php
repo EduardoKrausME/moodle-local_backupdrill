@@ -24,6 +24,8 @@
 
 namespace local_backupdrill\privacy;
 
+use core_privacy\local\metadata\collection;
+
 /**
  * Site-owned technical records; original MBZ files may carry personal information.
  */
@@ -32,8 +34,7 @@ final class provider implements \core_privacy\local\metadata\provider,
     /**
      * Handle get metadata.
      */
-    public static function get_metadata(\core_privacy\local\metadata\collection $collection):
-            \core_privacy\local\metadata\collection {
+    public static function get_metadata(collection $collection): collection {
         $collection->add_subsystem_link('core_files', [], 'privacy:metadata:source');
         $collection->add_database_table('local_backupdrill_run', [
             'reportjson' => 'privacy:metadata:report',
