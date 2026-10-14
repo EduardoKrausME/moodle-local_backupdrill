@@ -24,13 +24,17 @@
 
 namespace local_backupdrill\form;
 
-defined('MOODLE_INTERNAL') || die();
-
 require_once($CFG->libdir . '/formslib.php');
 
-/** A site-admin-only plan form. */
+/**
+ * A site-admin-only plan form.
+ */
 final class plan_form extends \moodleform {
-    /** @return void */
+    /**
+     * Handle definition.
+     *
+     * @return void
+     */
     protected function definition(): void {
         $form = $this->_form;
         $form->addElement('text', 'name', get_string('planname', 'local_backupdrill'), ['size' => 50]);

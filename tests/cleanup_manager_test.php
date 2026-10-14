@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\cleanup_manager */
+/**
+ * Handle cleanup manager test.
+ *
+ * @covers \local_backupdrill\local\cleanup_manager
+ */
 final class cleanup_manager_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify refuses cleanup without safe lab.
+     *
+     * @return void
+     */
     public function test_refuses_cleanup_without_safe_lab(): void {
         if (defined('LOCAL_BACKUPDRILL_LAB_ENABLED') && LOCAL_BACKUPDRILL_LAB_ENABLED === true) {
             $this->markTestSkipped('Denial path applies to non-enrolled installations.');

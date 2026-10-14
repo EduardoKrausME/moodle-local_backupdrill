@@ -24,11 +24,15 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Limits are deliberately bounded even when records are modified manually. */
+/**
+ * Limits are deliberately bounded even when records are modified manually.
+ */
 final class drill_configuration {
-    /** @param \stdClass $plan The plan. */
+    /**
+     * Handle validate.
+     *
+     * @param \stdClass $plan The plan.
+     */
     public static function validate(\stdClass $plan): void {
         if (trim($plan->name) === '' || \core_text::strlen($plan->name) > 255) {
             throw new \moodle_exception('invalidplan', 'local_backupdrill');

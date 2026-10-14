@@ -24,16 +24,24 @@
 
 namespace local_backupdrill\task;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Avoids issuing any new work until the lab guard has passed. */
+/**
+ * Avoids issuing any new work until the lab guard has passed.
+ */
 final class schedule_plans extends \core\task\scheduled_task {
-    /** @return string Localized task name. */
+    /**
+     * Handle get name.
+     *
+     * @return string Localized task name.
+     */
     public function get_name(): string {
         return get_string('taskschedule', 'local_backupdrill');
     }
 
-    /** @return void */
+    /**
+     * Handle execute.
+     *
+     * @return void
+     */
     public function execute(): void {
         global $DB;
         \local_backupdrill\local\environment_guard::assert_safe();

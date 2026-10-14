@@ -24,11 +24,13 @@
 
 namespace local_backupdrill\check;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Moodle question bank contexts changed across versions; give honest partial evidence. */
+/**
+ * Moodle question bank contexts changed across versions; give honest partial evidence.
+ */
 final class questions_check implements check {
-    /** @inheritdoc */
+    /**
+     * Handle run.
+     */
     public function run(array $inventory, int $courseid): array {
         global $DB;
         $sql = 'SELECT COUNT(1) FROM {question_categories} qc

@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\check\structure_check */
+/**
+ * Handle integrity checks test.
+ *
+ * @covers \local_backupdrill\check\structure_check
+ */
 final class integrity_checks_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify missing modules fail and references are not claimed verified.
+     *
+     * @return void
+     */
     public function test_missing_modules_fail_and_references_are_not_claimed_verified(): void {
         $this->resetAfterTest();
         $course = $this->getDataGenerator()->create_course();

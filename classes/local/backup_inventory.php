@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Inventory uses structured manifests instead of assuming every MBZ is a ZIP. */
+/**
+ * Inventory uses structured manifests instead of assuming every MBZ is a ZIP.
+ */
 final class backup_inventory {
-    /** @param string $path Local extracted Moodle backup directory. @return array Inventory. */
+    /**
+     * Handle inspect.
+     *
+     * @param string $path Local extracted Moodle backup directory.
+     * @return array Inventory.
+     */
     public static function inspect(string $path): array {
         $xml = self::read_xml($path . '/moodle_backup.xml', true);
         $sections = $xml->xpath('//contents/sections/section') ?: [];
@@ -96,6 +101,8 @@ final class backup_inventory {
     }
 
     /**
+     * Handle read xml.
+     *
      * @param string $name XML file path.
      * @param bool $required Whether missing or invalid XML is fatal.
      * @return \SimpleXMLElement|null Parsed XML if present.

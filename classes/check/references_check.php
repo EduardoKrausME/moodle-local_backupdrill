@@ -24,11 +24,13 @@
 
 namespace local_backupdrill\check;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Checks basic availability JSON but does not claim full reference resolution. */
+/**
+ * Checks basic availability JSON but does not claim full reference resolution.
+ */
 final class references_check implements check {
-    /** @inheritdoc */
+    /**
+     * Handle run.
+     */
     public function run(array $inventory, int $courseid): array {
         global $DB;
         $modules = $DB->get_records('course_modules', ['course' => $courseid], '',
@@ -59,11 +61,15 @@ final class references_check implements check {
             ['id' => 'course_settings', 'status' => 'not_verified',
                 'expected' => null, 'actual' => null],
         ];
-
     }
 
-    /** @param array $node Decoded availability tree. @param array $modules Course module records.
-     * @return int Number of dangling completion references. */
+    /**
+     * Handle missing completion references.
+     *
+     * @param array $node Decoded availability tree.
+     * @param array $modules Course module records.
+     * @return int Number of dangling completion references.
+     */
     private static function missing_completion_references(array $node, array $modules): int {
         $count = 0;
         if (($node['type'] ?? '') === 'completion' && !empty($node['cm']) &&

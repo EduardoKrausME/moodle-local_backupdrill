@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\drill_configuration */
+/**
+ * Handle drill configuration test.
+ *
+ * @covers \local_backupdrill\local\drill_configuration
+ */
 final class drill_configuration_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify accepts bounded configuration.
+     *
+     * @return void
+     */
     public function test_accepts_bounded_configuration(): void {
         $plan = (object) ['name' => 'Small fictional course', 'intervalhours' => 24,
             'maxseconds' => 600, 'maxbytes' => 52428800, 'maxattempts' => 2];
@@ -36,7 +42,11 @@ final class drill_configuration_test extends \advanced_testcase {
         $this->assertTrue(true);
     }
 
-    /** @return void */
+    /**
+     * Verify rejects unbounded timeout.
+     *
+     * @return void
+     */
     public function test_rejects_unbounded_timeout(): void {
         $plan = (object) ['name' => 'Abusive plan', 'intervalhours' => 1,
             'maxseconds' => 9999999, 'maxbytes' => 52428800, 'maxattempts' => 2];

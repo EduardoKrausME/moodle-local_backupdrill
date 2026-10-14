@@ -6,5 +6,5 @@ Feature: Backup drill administration is permission-controlled
 
   Scenario: A site administrator can inspect test administration
     Given I log in as "admin"
-    When I am on "/local/backupdrill/index.php"
+    When I visit "/local/backupdrill/index.php"
     Then I should see "Backup restoration tests"

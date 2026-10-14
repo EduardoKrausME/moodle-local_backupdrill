@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Never prune earlier than seven days or later than ten years. */
+/**
+ * Never prune earlier than seven days or later than ten years.
+ */
 final class retention_policy {
-    /** @param int $days Requested retention days. @return int Clamped retention. */
+    /**
+     * Handle days.
+     *
+     * @param int $days Requested retention days.
+     * @return int Clamped retention.
+     */
     public static function days(int $days): int {
         return min(3650, max(7, $days ?: 90));
     }

@@ -24,27 +24,41 @@
 
 namespace local_backupdrill\event;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Administrative audit event. */
+/**
+ * Administrative audit event.
+ */
 final class plan_created extends \core\event\base {
-    /** Event classification. */
+    /**
+     * Event classification.
+     */
     protected function init(): void {
         $this->data['crud'] = 'c';
         $this->data['edulevel'] = self::LEVEL_OTHER;
     }
 
-    /** @return string Name. */
+    /**
+     * Handle get name.
+     *
+     * @return string Name.
+     */
     public static function get_name(): string {
         return get_string('eventplan_created', 'local_backupdrill');
     }
 
-    /** @return string Non-sensitive description. */
+    /**
+     * Handle get description.
+     *
+     * @return string Non-sensitive description.
+     */
     public function get_description(): string {
         return 'Plan created (ID ' . $this->objectid . ').';
     }
 
-    /** @return \moodle_url The admin page. */
+    /**
+     * Handle get url.
+     *
+     * @return \moodle_url The admin page.
+     */
     public function get_url(): \moodle_url {
         return new \moodle_url('/local/backupdrill/index.php');
     }

@@ -24,25 +24,39 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\validation_engine */
+/**
+ * Handle validation engine test.
+ *
+ * @covers \local_backupdrill\local\validation_engine
+ */
 final class validation_engine_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify missing components cause partial status.
+     *
+     * @return void
+     */
     public function test_missing_components_cause_partial_status(): void {
         $check = \local_backupdrill\local\validation_engine::compare('assign', 2, 1);
         $this->assertSame('failed', $check['status']);
         $this->assertSame('partial', \local_backupdrill\local\validation_engine::classify([$check]));
     }
 
-    /** @return void */
+    /**
+     * Verify unverifiable is not success.
+     *
+     * @return void
+     */
     public function test_unverifiable_is_not_success(): void {
         $check = \local_backupdrill\local\validation_engine::compare('references', null, null);
         $this->assertSame('not_verified', $check['status']);
         $this->assertSame('warnings', \local_backupdrill\local\validation_engine::classify([$check]));
     }
 
-    /** @return void */
+    /**
+     * Verify exact match passes.
+     *
+     * @return void
+     */
     public function test_exact_match_passes(): void {
         $this->assertSame('passed', \local_backupdrill\local\validation_engine::classify([
             \local_backupdrill\local\validation_engine::compare('sections', 3, 3),

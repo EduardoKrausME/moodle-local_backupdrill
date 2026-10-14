@@ -24,11 +24,15 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** No restore, schedule or cleanup happens without these fences. */
+/**
+ * No restore, schedule or cleanup happens without these fences.
+ */
 final class environment_guard {
-    /** @return string Stable physical Moodle identity, used for explicit lab enrollment. */
+    /**
+     * Handle fingerprint.
+     *
+     * @return string Stable physical Moodle identity, used for explicit lab enrollment.
+     */
     public static function fingerprint(): string {
         global $CFG;
         $realdata = realpath($CFG->dataroot);
@@ -41,7 +45,11 @@ final class environment_guard {
         ]));
     }
 
-    /** @param bool $requirecli Require real CLI for any operation with side effects. */
+    /**
+     * Handle assert safe.
+     *
+     * @param bool $requirecli Require real CLI for any operation with side effects.
+     */
     public static function assert_safe(bool $requirecli = true): void {
         global $CFG, $DB;
         if (($requirecli && PHP_SAPI !== 'cli') ||

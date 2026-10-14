@@ -24,12 +24,18 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** No numeric course ID alone is sufficient proof of ownership. */
+/**
+ * No numeric course ID alone is sufficient proof of ownership.
+ */
 final class cleanup_manager {
-    /** @param int $runid The run creating the disposable course. @param int $courseid Its course ID.
-     * @param string $shortname Generated short name. @return string Permanent random token. */
+    /**
+     * Handle register.
+     *
+     * @param int $runid The run creating the disposable course.
+     * @param int $courseid Its course ID.
+     * @param string $shortname Generated short name.
+     * @return string Permanent random token.
+     */
     public static function register(int $runid, int $courseid, string $shortname): string {
         global $DB;
         $token = bin2hex(random_bytes(32));
@@ -41,8 +47,13 @@ final class cleanup_manager {
         return $token;
     }
 
-    /** @param int $runid Owned execution. @param bool $authorized Explicit cleanup instruction.
-     * @return bool Whether a course was deleted. */
+    /**
+     * Handle clean.
+     *
+     * @param int $runid Owned execution.
+     * @param bool $authorized Explicit cleanup instruction.
+     * @return bool Whether a course was deleted.
+     */
     public static function clean(int $runid, bool $authorized): bool {
         global $DB, $CFG;
         environment_guard::assert_safe();
@@ -71,8 +82,12 @@ final class cleanup_manager {
         return true;
     }
 
-    /** Reinstate the ownership marker when the restore overwrites destination course metadata.
-     * @param int $runid Run ID. @return void */
+    /**
+     * Reinstate the ownership marker when the restore overwrites destination course metadata.
+     *
+     * @param int $runid Run ID.
+     * @return void
+     */
     public static function retag(int $runid): void {
         global $DB;
         environment_guard::assert_safe();

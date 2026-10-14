@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\check;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Plug-in specific checks can implement this interface in the future. */
+/**
+ * Plug-in specific checks can implement this interface in the future.
+ */
 interface check {
-    /** @param array $inventory Expected objects. @param int $courseid Restored course.
-     * @return array Array of ['id', 'status', 'expected', 'actual'] records. */
+    /**
+     * Handle run.
+     *
+     * @param array $inventory Expected objects.
+     * @param int $courseid Restored course.
+     * @return array Array of ['id', 'status', 'expected', 'actual'] records.
+     */
     public function run(array $inventory, int $courseid): array;
 }

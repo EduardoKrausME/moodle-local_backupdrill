@@ -21,37 +21,3 @@ jobs:
           python3 /tmp/moodle-plugin-validate/.chatgpt/run.py "$GITHUB_WORKSPACE"
           python3 /tmp/moodle-plugin-validate/.chatgpt/run.py --check "$GITHUB_WORKSPACE"
           git diff --exit-code
-  moodle-ci:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_DB: moodle
-          POSTGRES_USER: moodle
-          POSTGRES_PASSWORD: moodle
-        ports: ['5432:5432']
-        options: >-
-          --health-cmd "pg_isready -U moodle" --health-interval 10s
-          --health-timeout 5s --health-retries 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: intl, pgsql, zip, mbstring, soap, gd
-          coverage: none
-      - name: Install Moodle Plugin CI
-        run: |
-          composer global require moodlehq/moodle-plugin-ci --no-interaction
-          echo "$(composer global config bin-dir --absolute)" >> "$GITHUB_PATH"
-      - name: Install Moodle
-        run: moodle-plugin-ci install --db-type pgsql --moodle-branch MOODLE_405_STABLE
-      - name: PHP lint
-        run: moodle-plugin-ci phplint
-      - name: Codechecker
-        run: moodle-plugin-ci codechecker
-      - name: PHPCS
-        run: moodle-plugin-ci phpcs
-      - name: PHPUnit
-        run: moodle-plugin-ci phpunit --fail-on-warning

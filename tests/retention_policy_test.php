@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\retention_policy */
+/**
+ * Handle retention policy test.
+ *
+ * @covers \local_backupdrill\local\retention_policy
+ */
 final class retention_policy_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify enforces minimum and maximum.
+     *
+     * @return void
+     */
     public function test_enforces_minimum_and_maximum(): void {
         $this->assertSame(7, \local_backupdrill\local\retention_policy::days(1));
         $this->assertSame(90, \local_backupdrill\local\retention_policy::days(90));

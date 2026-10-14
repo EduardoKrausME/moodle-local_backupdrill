@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Persist queued work before dispatching it to Moodle's Task API. */
+/**
+ * Persist queued work before dispatching it to Moodle's Task API.
+ */
 final class execution_history {
-    /** @param int $planid Plan to queue. @return int Run identifier. */
+    /**
+     * Handle queue.
+     *
+     * @param int $planid Plan to queue.
+     * @return int Run identifier.
+     */
     public static function queue(int $planid, bool $dispatch = true): int {
         global $DB;
         $plan = $DB->get_record('local_backupdrill_plan', ['id' => $planid], '*', MUST_EXIST);
@@ -45,14 +50,23 @@ final class execution_history {
         return $runid;
     }
 
-    /** @param int $runid Queued record. */
+    /**
+     * Handle dispatch.
+     *
+     * @param int $runid Queued record.
+     */
     public static function dispatch(int $runid): void {
         $task = new \local_backupdrill\task\execute_run();
         $task->set_custom_data(['runid' => $runid]);
         \core\task\manager::queue_adhoc_task($task, true);
     }
 
-    /** @param int $runid Record identifier. @param array $report Sanitized report. */
+    /**
+     * Handle finish.
+     *
+     * @param int $runid Record identifier.
+     * @param array $report Sanitized report.
+     */
     public static function finish(int $runid, array $report): void {
         global $DB;
         $run = $DB->get_record('local_backupdrill_run', ['id' => $runid], '*', MUST_EXIST);

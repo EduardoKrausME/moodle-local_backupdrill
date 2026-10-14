@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\report_builder */
+/**
+ * Handle report builder test.
+ *
+ * @covers \local_backupdrill\local\report_builder
+ */
 final class report_builder_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify csv exports comparable evidence.
+     *
+     * @return void
+     */
     public function test_csv_exports_comparable_evidence(): void {
         $report = \local_backupdrill\local\report_builder::start(13);
         $report['status'] = 'partial';

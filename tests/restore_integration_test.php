@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @coversNothing */
+/**
+ * Handle restore integration test.
+ *
+ * @coversNothing
+ */
 final class restore_integration_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify real backup and restore of fictional course.
+     *
+     * @return void
+     */
     public function test_real_backup_and_restore_of_fictional_course(): void {
         global $CFG, $USER;
         if (getenv('BACKUPDRILL_RUN_INTEGRATION') !== '1') {

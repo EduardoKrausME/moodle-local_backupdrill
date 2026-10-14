@@ -24,16 +24,24 @@
 
 namespace local_backupdrill\task;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Deletes only history with no remaining owned course and no active task. */
+/**
+ * Deletes only history with no remaining owned course and no active task.
+ */
 final class prune_history extends \core\task\scheduled_task {
-    /** @return string Human task name. */
+    /**
+     * Handle get name.
+     *
+     * @return string Human task name.
+     */
     public function get_name(): string {
         return get_string('taskprune', 'local_backupdrill');
     }
 
-    /** @return void */
+    /**
+     * Handle execute.
+     *
+     * @return void
+     */
     public function execute(): void {
         global $DB;
         \local_backupdrill\local\environment_guard::assert_safe();

@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\execution_history */
+/**
+ * Handle lock and history test.
+ *
+ * @covers \local_backupdrill\local\execution_history
+ */
 final class lock_and_history_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify queue creates unique pending records without dispatch.
+     *
+     * @return void
+     */
     public function test_queue_creates_unique_pending_records_without_dispatch(): void {
         global $DB;
         $this->resetAfterTest();
@@ -48,7 +54,11 @@ final class lock_and_history_test extends \advanced_testcase {
         $this->assertEquals('pending', $DB->get_field('local_backupdrill_run', 'status', ['id' => $second]));
     }
 
-    /** @return void */
+    /**
+     * Verify lock api returns a scoped lock.
+     *
+     * @return void
+     */
     public function test_lock_api_returns_a_scoped_lock(): void {
         $lock = \core\lock\lock_config::get_lock_factory('local_backupdrill')->get_lock('unit-check', 0, 5);
         $this->assertNotFalse($lock);

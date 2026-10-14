@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\environment_guard */
+/**
+ * Handle environment guard test.
+ *
+ * @covers \local_backupdrill\local\environment_guard
+ */
 final class environment_guard_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify refuses environments without explicit enrolment.
+     *
+     * @return void
+     */
     public function test_refuses_environments_without_explicit_enrolment(): void {
         if (defined('LOCAL_BACKUPDRILL_LAB_ENABLED') && LOCAL_BACKUPDRILL_LAB_ENABLED === true) {
             $this->markTestSkipped('Dedicated lab is explicitly opted in; do not test default denial there.');

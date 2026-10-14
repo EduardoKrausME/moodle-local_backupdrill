@@ -24,18 +24,28 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Portable, bounded diagnostic output. */
+/**
+ * Portable, bounded diagnostic output.
+ */
 final class report_builder {
-    /** @param int $runid ID. @return array Base report. */
+    /**
+     * Handle start.
+     *
+     * @param int $runid ID.
+     * @return array Base report.
+     */
     public static function start(int $runid): array {
         return ['schema' => 1, 'runid' => $runid, 'status' => 'pending',
             'errorcode' => '', 'inventory' => [], 'checks' => [], 'warnings' => [],
             'durationseconds' => 0, 'created' => time()];
     }
 
-    /** @param \Throwable $exception Error whose raw message may include private data. @return string Safe code. */
+    /**
+     * Handle error code.
+     *
+     * @param \Throwable $exception Error whose raw message may include private data.
+     * @return string Safe code.
+     */
     public static function error_code(\Throwable $exception): string {
         if ($exception instanceof \moodle_exception) {
             return preg_replace('/[^a-z0-9_]/', '', strtolower($exception->errorcode)) ?: 'moodle_error';
@@ -43,7 +53,12 @@ final class report_builder {
         return 'runtime_error';
     }
 
-    /** @param array $report Report. @return string CSV document. */
+    /**
+     * Handle csv.
+     *
+     * @param array $report Report.
+     * @return string CSV document.
+     */
     public static function csv(array $report): string {
         $stream = fopen('php://temp', 'w+');
         fputcsv($stream, ['runid', 'status', 'check', 'result', 'expected', 'actual'], ',', '"', '');

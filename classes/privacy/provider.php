@@ -24,13 +24,16 @@
 
 namespace local_backupdrill\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Site-owned technical records; original MBZ files may carry personal information. */
+/**
+ * Site-owned technical records; original MBZ files may carry personal information.
+ */
 final class provider implements \core_privacy\local\metadata\provider,
         \core_privacy\local\request\plugin\provider {
-    /** @inheritdoc */
-    public static function get_metadata(\core_privacy\local\metadata\collection $collection): \core_privacy\local\metadata\collection {
+    /**
+     * Handle get metadata.
+     */
+    public static function get_metadata(\core_privacy\local\metadata\collection $collection):
+            \core_privacy\local\metadata\collection {
         $collection->add_subsystem_link('core_files', [], 'privacy:metadata:source');
         $collection->add_database_table('local_backupdrill_run', [
             'reportjson' => 'privacy:metadata:report',
@@ -38,7 +41,9 @@ final class provider implements \core_privacy\local\metadata\provider,
         return $collection;
     }
 
-    /** @inheritdoc */
+    /**
+     * Handle get contexts for userid.
+     */
     public static function get_contexts_for_userid(int $userid): \core_privacy\local\request\contextlist {
         $list = new \core_privacy\local\request\contextlist();
         $sql = 'SELECT DISTINCT f.contextid FROM {files} f
@@ -48,7 +53,9 @@ final class provider implements \core_privacy\local\metadata\provider,
         return $list;
     }
 
-    /** @inheritdoc */
+    /**
+     * Handle export user data.
+     */
     public static function export_user_data(\core_privacy\local\request\approved_contextlist $contextlist): void {
         foreach ($contextlist->get_contexts() as $context) {
             \core_privacy\local\request\writer::with_context($context)->export_area_files(
@@ -56,12 +63,16 @@ final class provider implements \core_privacy\local\metadata\provider,
         }
     }
 
-    /** @inheritdoc */
+    /**
+     * Handle delete data for all users in context.
+     */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         // Source archives may contain data about other people; never destroy unrelated backups here.
     }
 
-    /** @inheritdoc */
+    /**
+     * Handle delete data for user.
+     */
     public static function delete_data_for_user(\core_privacy\local\request\approved_contextlist $contextlist): void {
         // Preserve audit integrity and unrelated users' restored content; deletion is lab-admin governed.
     }

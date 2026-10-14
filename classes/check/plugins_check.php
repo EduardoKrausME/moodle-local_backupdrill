@@ -24,11 +24,13 @@
 
 namespace local_backupdrill\check;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Detect declared activity modules that are not usable in the laboratory. */
+/**
+ * Detect declared activity modules that are not usable in the laboratory.
+ */
 final class plugins_check implements check {
-    /** @inheritdoc */
+    /**
+     * Handle run.
+     */
     public function run(array $inventory, int $courseid): array {
         $results = [];
         $manager = \core_plugin_manager::instance();

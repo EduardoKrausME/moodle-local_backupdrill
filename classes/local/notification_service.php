@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Send no archive content, raw exception, student data or external messages. */
+/**
+ * Send no archive content, raw exception, student data or external messages.
+ */
 final class notification_service {
-    /** @param int $runid Failed run. @param string $status Machine status code. */
+    /**
+     * Handle failure.
+     *
+     * @param int $runid Failed run.
+     * @param string $status Machine status code.
+     */
     public static function failure(int $runid, string $status): void {
         global $CFG;
         environment_guard::assert_safe();

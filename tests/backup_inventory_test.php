@@ -24,11 +24,17 @@
 
 namespace local_backupdrill;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** @covers \local_backupdrill\local\backup_inventory */
+/**
+ * Handle backup inventory test.
+ *
+ * @covers \local_backupdrill\local\backup_inventory
+ */
 final class backup_inventory_test extends \advanced_testcase {
-    /** @return void */
+    /**
+     * Verify reads minimal manifest and marks missing as unknown.
+     *
+     * @return void
+     */
     public function test_reads_minimal_manifest_and_marks_missing_as_unknown(): void {
         $dir = make_temp_directory('backupdrill_test_' . random_string(8));
         file_put_contents($dir . '/moodle_backup.xml', '<moodle_backup><information><format>moodle2</format>' .
@@ -42,7 +48,11 @@ final class backup_inventory_test extends \advanced_testcase {
         fulldelete($dir);
     }
 
-    /** @return void */
+    /**
+     * Verify rejects missing metadata.
+     *
+     * @return void
+     */
     public function test_rejects_missing_metadata(): void {
         $this->expectException(\moodle_exception::class);
         \local_backupdrill\local\backup_inventory::inspect(sys_get_temp_dir());

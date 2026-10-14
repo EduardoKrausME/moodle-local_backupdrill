@@ -24,11 +24,13 @@
 
 namespace local_backupdrill\check;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Validates native course-section and course-module records. */
+/**
+ * Validates native course-section and course-module records.
+ */
 final class structure_check implements check {
-    /** @inheritdoc */
+    /**
+     * Handle run.
+     */
     public function run(array $inventory, int $courseid): array {
         global $DB;
         $sections = (int) $DB->count_records('course_sections', ['course' => $courseid]);

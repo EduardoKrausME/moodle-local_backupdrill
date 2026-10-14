@@ -24,16 +24,24 @@
 
 namespace local_backupdrill\task;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Never run on non-CLI PHP or on unregistered environments. */
+/**
+ * Never run on non-CLI PHP or on unregistered environments.
+ */
 final class execute_run extends \core\task\adhoc_task {
-    /** @return string Task name. */
+    /**
+     * Handle get name.
+     *
+     * @return string Task name.
+     */
     public function get_name(): string {
         return get_string('taskexecute', 'local_backupdrill');
     }
 
-    /** @return void */
+    /**
+     * Handle execute.
+     *
+     * @return void
+     */
     public function execute(): void {
         \local_backupdrill\local\environment_guard::assert_safe();
         $data = $this->get_custom_data();

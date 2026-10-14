@@ -24,11 +24,16 @@
 
 namespace local_backupdrill\local;
 
-defined('MOODLE_INTERNAL') || die();
-
-/** Restore is intentionally never exposed by a web request or remote production API. */
+/**
+ * Restore is intentionally never exposed by a web request or remote production API.
+ */
 final class restore_executor {
-    /** @param int $runid Previously queued run. @return array Final technical report. */
+    /**
+     * Handle execute.
+     *
+     * @param int $runid Previously queued run.
+     * @return array Final technical report.
+     */
     public static function execute(int $runid): array {
         global $CFG, $DB;
         environment_guard::assert_safe();
@@ -170,6 +175,7 @@ final class restore_executor {
                 }
             } catch (\Throwable $ignored) {
                 // Notifications must never prevent lock release or modify validated results.
+                debugging('Backup drill administrator notification failed.', DEBUG_DEVELOPER);
             } finally {
                 $lock->release();
             }
@@ -177,14 +183,24 @@ final class restore_executor {
         return $report;
     }
 
-    /** @param float $start Start time. @param int $limit Allowed runtime. */
+    /**
+     * Handle deadline.
+     *
+     * @param float $start Start time.
+     * @param int $limit Allowed runtime.
+     */
     private static function deadline(float $start, int $limit): void {
         if (microtime(true) - $start > $limit) {
             throw new \moodle_exception('deadlineexceeded', 'local_backupdrill');
         }
     }
 
-    /** @param string $path Extracted root. @param int $maxbytes Maximum sum of file sizes. */
+    /**
+     * Handle check extracted tree.
+     *
+     * @param string $path Extracted root.
+     * @param int $maxbytes Maximum sum of file sizes.
+     */
     private static function check_extracted_tree(string $path, int $maxbytes): void {
         $size = 0;
         $root = realpath($path);
