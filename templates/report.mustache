@@ -1,0 +1,28 @@
+{{!
+    @template local_backupdrill/report
+    Per-check results with secure JSON and CSV downloads.
+}}
+<div class="local-backupdrill">
+    <h2>{{#str}}report, local_backupdrill{{/str}} #{{id}}</h2>
+    <p><strong>{{#str}}status, local_backupdrill{{/str}}:</strong> {{status}}</p>
+    {{#errorcode}}<p><strong>{{#str}}errorcode, local_backupdrill{{/str}}:</strong> {{errorcode}}</p>{{/errorcode}}
+    <p><a class="btn btn-outline-secondary" href="{{jsonurl}}">JSON</a> <a class="btn btn-outline-secondary" href="{{csvurl}}">CSV</a></p>
+    <table class="table table-striped">
+        <thead><tr><th scope="col">{{#str}}check, local_backupdrill{{/str}}</th><th scope="col">{{#str}}status, local_backupdrill{{/str}}</th><th scope="col">{{#str}}expected, local_backupdrill{{/str}}</th><th scope="col">{{#str}}actual, local_backupdrill{{/str}}</th></tr></thead>
+        <tbody>{{#checks}}<tr><td>{{name}}</td><td>{{status}}</td><td>{{expected}}</td><td>{{actual}}</td></tr>{{/checks}}</tbody>
+    </table>
+    <form method="get" action="{{currenturl}}" class="form-inline mb-3">
+        <input type="hidden" name="id" value="{{id}}">
+        <label for="backupdrill-compare">{{#str}}comparewith, local_backupdrill{{/str}}</label>
+        <input id="backupdrill-compare" class="form-control mx-2" name="compare" type="number" min="1" value="{{compareid}}">
+        <button class="btn btn-secondary" type="submit">{{#str}}compare, local_backupdrill{{/str}}</button>
+    </form>
+    {{#hascomparison}}
+        <h3>{{#str}}comparison, local_backupdrill{{/str}}</h3>
+        <table class="table table-striped">
+            <thead><tr><th scope="col">{{#str}}check, local_backupdrill{{/str}}</th><th scope="col">{{#str}}previous, local_backupdrill{{/str}}</th><th scope="col">{{#str}}current, local_backupdrill{{/str}}</th></tr></thead>
+            <tbody>{{#comparison}}<tr><td>{{name}}</td><td>{{beforestatus}} ({{beforeactual}})</td><td>{{afterstatus}} ({{afteractual}})</td></tr>{{/comparison}}</tbody>
+        </table>
+    {{/hascomparison}}
+    <p><a href="{{backurl}}">{{#str}}back, local_backupdrill{{/str}}</a></p>
+</div>

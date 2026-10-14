@@ -1,0 +1,8 @@
+/.phpunit.result.cache
+/.phpunit-watcher.yml
+/vendor/
+/node_modules/
+/.moodle-plugin-ci/
+/.phpunit-watcher/
+/.idea/
+/.vscode/
