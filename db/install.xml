@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/backupdrill/db" VERSION="2026101400" COMMENT="Backup restoration laboratory records" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+<XMLDB PATH="local/backupdrill/db" VERSION="20261014" COMMENT="Backup restoration laboratory records" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
   <TABLES>
     <TABLE NAME="local_backupdrill_plan" COMMENT="Persistent restoration plans">
       <FIELDS>
@@ -32,7 +32,7 @@
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
         <FIELD NAME="started" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
         <FIELD NAME="finished" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
-        <FIELD NAME="errorcode" TYPE="char" LENGTH="80" NOTNULL="true" DEFAULT=""/>
+        <FIELD NAME="errorcode" TYPE="char" LENGTH="80" NOTNULL="false"/>
         <FIELD NAME="reportjson" TYPE="text" NOTNULL="false"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true"/>
       </FIELDS>

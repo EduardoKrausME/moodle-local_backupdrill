@@ -17,19 +17,19 @@
         <div class="col-sm-3"><div class="card card-body"><strong>{{#str}}failed, local_backupdrill{{/str}}</strong><span>{{summary.failed}}</span></div></div>
     </div>
     <h3>{{#str}}plans, local_backupdrill{{/str}}</h3>
-    {{#canmanage}}<p><a class="btn btn-primary" href="{{newplanurl}}">{{#str}}newplan, local_backupdrill{{/str}}</a></p>{{/canmanage}}
+    {{#canmanage}}<p><a class="btn btn-primary" href="{{{newplanurl}}}">{{#str}}newplan, local_backupdrill{{/str}}</a></p>{{/canmanage}}
     <table class="table table-striped">
         <thead><tr><th scope="col">ID</th><th scope="col">{{#str}}planname, local_backupdrill{{/str}}</th><th scope="col">{{#str}}intervalhours, local_backupdrill{{/str}}</th><th scope="col">{{#str}}actions, local_backupdrill{{/str}}</th></tr></thead>
         <tbody>
         {{#plans}}
             <tr><td>{{id}}</td><td>{{name}}</td><td>{{interval}}</td><td>
-                {{#canmanage}}<form action="{{actionurl}}" method="post">
+                {{#canmanage}}<form action="{{{actionurl}}}" method="post">
                     <input type="hidden" name="sesskey" value="{{sesskey}}">
                     <input type="hidden" name="planid" value="{{id}}">
                     <input type="hidden" name="action" value="queue">
                     <button class="btn btn-secondary" type="submit">{{#str}}runnow, local_backupdrill{{/str}}</button>
                 </form>
-                <form action="{{actionurl}}" method="post">
+                <form action="{{{actionurl}}}" method="post">
                     <input type="hidden" name="sesskey" value="{{sesskey}}">
                     <input type="hidden" name="planid" value="{{id}}">
                     <input type="hidden" name="action" value="toggle">
@@ -45,6 +45,6 @@
     <h3>{{#str}}history, local_backupdrill{{/str}}</h3>
     <table class="table table-striped">
         <thead><tr><th scope="col">ID</th><th scope="col">{{#str}}plans, local_backupdrill{{/str}}</th><th scope="col">{{#str}}status, local_backupdrill{{/str}}</th><th scope="col">{{#str}}date, local_backupdrill{{/str}}</th><th scope="col">{{#str}}report, local_backupdrill{{/str}}</th></tr></thead>
-        <tbody>{{#runs}}<tr><td>{{id}}</td><td>{{planid}}</td><td>{{status}}</td><td>{{created}}</td><td><a href="{{reporturl}}">{{#str}}report, local_backupdrill{{/str}}</a></td></tr>{{/runs}}</tbody>
+        <tbody>{{#runs}}<tr><td>{{id}}</td><td>{{planid}}</td><td>{{status}}</td><td>{{created}}</td><td><a href="{{{reporturl}}}">{{#str}}report, local_backupdrill{{/str}}</a></td></tr>{{/runs}}</tbody>
     </table>
 </div>

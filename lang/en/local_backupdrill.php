@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,12 +15,13 @@
 // along with Moodle. If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Backup drill strings.
+ * /**.
  *
  * @package    local_backupdrill
  * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
 $string['actions'] = 'Actions';
@@ -32,6 +33,8 @@ $string['archivesizelimit'] = 'Extracted archive exceeds size limit.';
 $string['attemptsexceeded'] = 'Maximum attempt count exceeded.';
 $string['autocleanup'] = 'Delete plugin-owned temporary courses after the test';
 $string['back'] = 'Back';
+$string['backupdrill:manage'] = 'Manage backup restoration test plans and schedules';
+$string['backupdrill:viewreports'] = 'View backup restoration test reports';
 $string['check'] = 'Check';
 $string['cleanupdenied'] = 'Explicitly authorised cleanup is required.';
 $string['cleanupfailed'] = 'Temporary course cleanup failed.';
@@ -63,6 +66,7 @@ $string['labname'] = 'Laboratory name';
 $string['labverified'] = 'Laboratory identity verified:';
 $string['lockunavailable'] = 'Another drill is using this backup.';
 $string['maxseconds'] = 'Maximum runtime (seconds)';
+$string['messageprovider:drillfailure'] = 'Backup restoration test failures';
 $string['missingplugin'] = 'A required backup component is unavailable in the lab.';
 $string['newplan'] = 'New restoration plan';
 $string['nocategory'] = 'No category available for temporary courses.';

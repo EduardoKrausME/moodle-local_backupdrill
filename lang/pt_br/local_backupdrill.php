@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,12 +15,13 @@
 // along with Moodle. If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Backup drill strings.
+ * /**.
  *
  * @package    local_backupdrill
  * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
 $string['actions'] = 'Ações';
@@ -32,6 +33,8 @@ $string['archivesizelimit'] = 'O backup extraído excede o limite de espaço.';
 $string['attemptsexceeded'] = 'Número máximo de tentativas excedido.';
 $string['autocleanup'] = 'Excluir cursos temporários pertencentes ao plugin após o teste';
 $string['back'] = 'Voltar';
+$string['backupdrill:manage'] = 'Gerenciar planos e agendamentos de testes de restauração de backup';
+$string['backupdrill:viewreports'] = 'Consultar relatórios dos testes de restauração de backup';
 $string['check'] = 'Verificação';
 $string['cleanupdenied'] = 'A limpeza exige autorização explícita.';
 $string['cleanupfailed'] = 'A limpeza do curso temporário falhou.';
@@ -63,6 +66,7 @@ $string['labname'] = 'Nome do laboratório';
 $string['labverified'] = 'Identidade do laboratório verificada:';
 $string['lockunavailable'] = 'Outro teste já está utilizando este backup.';
 $string['maxseconds'] = 'Tempo máximo de execução (segundos)';
+$string['messageprovider:drillfailure'] = 'Falhas nos testes de restauração de backup';
 $string['missingplugin'] = 'Um componente necessário do backup está ausente no laboratório.';
 $string['newplan'] = 'Novo plano de restauração';
 $string['nocategory'] = 'Não existe categoria disponível para cursos temporários.';

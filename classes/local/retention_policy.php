@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,12 +15,13 @@
 // along with Moodle. If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Centralize bounded retention rules.
+ * /**.
  *
  * @package    local_backupdrill
  * @copyright  2026 Eduardo Kraus {@link https://eduardokraus.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_backupdrill\local;
 
 defined('MOODLE_INTERNAL') || die();
