@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->release = '1.0.1';
-$plugin->version = 2026101401;
+$plugin->release = '1.0.2';
+$plugin->version = 2026101500;
 $plugin->requires = 2024100700;
 $plugin->component = 'local_backupdrill';
 $plugin->maturity = MATURITY_STABLE;
