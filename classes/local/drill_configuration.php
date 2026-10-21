@@ -34,7 +34,7 @@ final class drill_configuration {
      * @param \stdClass $plan The plan.
      */
     public static function validate(\stdClass $plan): void {
-        if (trim($plan->name) === '' || \core_text::strlen($plan->name) > 255) {
+        if (trim($plan->name) === '' || strlen($plan->name) > 255) {
             throw new \moodle_exception('invalidplan', 'local_backupdrill');
         }
         foreach (['intervalhours' => [1, 8760], 'maxseconds' => [30, 7200],
