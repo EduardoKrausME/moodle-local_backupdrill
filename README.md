@@ -11,7 +11,6 @@ Administrative tool to **test restoration of Moodle `.mbz` archives in a dedicat
 1. Provision **separate database**, **separate moodledata** and separate credentials; do not copy production API tokens, outgoing SMTP credentials, payment or SSO secrets.
 2. Block **all outbound network traffic** at the container/VM firewall, including mail, webhooks, LTI, payment gateways and scheduled integrations. Disable outgoing email, web services, messaging processors and nonessential scheduled tasks in the lab; `noemailever` is additionally set while a drill runs.
 3. Create a **hidden category** specifically for disposable drill courses, and give it the ID number `backupdrill_qa-isolated-01` (replace the suffix with the configured lab ID). No other course should be placed there.
-4. Install the plugin under `local/backupdrill`, upgrade Moodle and keep the administrator capabilities restricted (neither is assigned to ordinary archetypes).
 5. In the **test installation's** `config.php`, before Moodle bootstrap, add the constants and explicit metadata shown below; these values must NOT be copied to production:
 
 ```php
